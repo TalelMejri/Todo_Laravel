@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Categorie;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,12 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            //
+            "titel"=>$this->faker()->sentence(),
+            "body"=>$this->faker()->text(),
+            "image"=>$this->faker()->image(640,480, 'animals', false),
+            "user_id"=>User::get('id')->random(),
+            "categorie_id"=>Categorie::get('id')->random(),
+            "created_at"=>now()
         ];
     }
 }
