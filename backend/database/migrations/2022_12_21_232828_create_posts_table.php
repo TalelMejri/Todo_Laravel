@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('titel');
             $table->text('body');
-            $table->string('image')->nullable();
             //$table->unsignedBigInteger('user_id');
             $table->foreignId('user_id');
             $table->BigInteger('categorie_id')->unsigned();
