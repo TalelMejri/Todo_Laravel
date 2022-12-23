@@ -19,7 +19,7 @@ class CommentFactory extends Factory
     public function definition()
     {
         return [
-            "comment"=>$this->faker()->sentence(),
+            "comment"=>$this->fake()->sentence(),
             "user_id"=>User::get('id')->random(),
             "post_id"=>Post::get('id')->random(),
             "created_at"=>now()

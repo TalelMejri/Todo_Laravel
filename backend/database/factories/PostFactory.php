@@ -19,9 +19,9 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            "titel"=>$this->faker()->sentence(),
-            "body"=>$this->faker()->text(),
-            "image"=>$this->faker()->image(640,480, 'animals', false),
+            "titel"=>$this->fake()->sentence(),
+            "body"=>$this->fake()->text(),
+            "image"=>$this->fake()->image(640,480, 'animals', false),
             "user_id"=>User::get('id')->random(),
             "categorie_id"=>Categorie::get('id')->random(),
             "created_at"=>now()

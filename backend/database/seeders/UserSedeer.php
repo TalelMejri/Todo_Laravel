@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
 use Illuminate\Database\Seeder;
 
 class UserSedeer extends Seeder
@@ -14,6 +14,6 @@ class UserSedeer extends Seeder
      */
     public function run()
     {
-        //
+        \App\Models\User::factory(10)->create();
     }
 }

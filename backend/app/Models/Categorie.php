@@ -12,4 +12,5 @@ class Categorie extends Model
     public function posts(){
         return $this->hasMany(posts::class);
     }
+
 }
