@@ -7,6 +7,5 @@
     </head>
     <body>
         <a href="/posts">posts</a>
-        <a href="/">home</a>
     </body>
 </html>
