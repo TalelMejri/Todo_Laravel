@@ -6,6 +6,8 @@
         <title>Laravel</title>
     </head>
     <body>
-        <a href="/posts">posts</a>
+        <a href="/posts/index">posts</a>
+        <a href="/">Home</a>
+        <a href="/posts/">OLD</a>
     </body>
 </html>
