@@ -6,6 +6,6 @@
         <title>Laravel</title>
     </head>
     <body>
-        <a href="/posts">posts</a>
+        
     </body>
 </html>
