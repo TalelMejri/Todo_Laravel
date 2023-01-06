@@ -26,7 +26,7 @@
                 <td>{{substr($post->body,50).'...'}}</td>
                 <td>{{$post->categorie->name}}</td>
                 <td>
-                    <button><a href="/show">show</button>
+                    <button><a href="/posts/{{$post->id}}">show</button>
                     <button>edit</button>
                     <button>delete</button>
                 </td>
