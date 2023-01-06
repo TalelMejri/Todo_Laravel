@@ -12,6 +12,7 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
        $posts=Post::with('categorie')->get();
@@ -48,7 +49,6 @@ class PostController extends Controller
     public function show($id)
     {
        $post=Post::with('categorie','user')->findOrFail($id);
-
        return view('posts.show',compact('post'));
     }
 
@@ -81,8 +81,23 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function destroy($id)
     {
-        //
+        $post=POST::find($id);
+        if($post){
+              $post->destroy($id);
+              //$posts=Post::with('categorie')->get();
+              $posts=Post::with('categorie')->get();
+              return view('posts.index',compact('posts'));
+        }
+    }
+
+    public function delete($id){
+        $post=POST::find($id);
+        if($post){
+            $post->destroy($id);
+            return redirect("/posts");
+        }
     }
 }
