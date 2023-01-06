@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -6,6 +7,11 @@
         <title>Laravel</title>
     </head>
     <body>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, inventore, vel error natus necessitatibus molestias, sint ex maxime optio ratione qui ad vero laboriosam temporibus obcaecati at quos consequuntur? Omnis illum sapiente id assumenda officia? Nisi in enim consequuntur ratione, ullam commodi consequatur minus consectetur? Quidem, tempora ab. Porro, consectetur.
+         @include('navigation')
+         <br>
+        {{$post->titel}}
+        {{$post->id}}
+        {{$post->user->email}}
+        {{$post->Categorie->name}}
     </body>
 </html>
