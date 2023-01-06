@@ -31,7 +31,7 @@
                     <form action="/posts/{{$post->id}}" method="post">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
-                        <button>delete</button>
+                        <button onclick='return confirm("do you want delete {{$post->titel}}")'>delete</button>
                     </form>
                     {{-- <button><a href="/posts/delete/{{$post->id}}" >delete</a> </button> --}}
                 </td>
