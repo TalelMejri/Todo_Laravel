@@ -28,7 +28,12 @@
                 <td>
                     <button><a href="/posts/{{$post->id}}">show</button>
                     <button>edit</button>
-                    <button>delete</button>
+                    <form action="/posts/{{$post->id}}" method="post">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+                        <button>delete</button>
+                    </form>
+                    {{-- <button><a href="/posts/delete/{{$post->id}}" >delete</a> </button> --}}
                 </td>
             </tr>
         @endforeach
