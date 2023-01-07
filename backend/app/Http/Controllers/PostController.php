@@ -20,7 +20,7 @@ class PostController extends Controller
         }else{
               $posts=Post::paginate(5);
         }
-        return view('posts.index',compact('posts'));
+        return view('posts.index',['posts'=>$posts]);
     }
 
     /**
@@ -62,9 +62,17 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+
+    public function findbyid($id)
     {
-        //
+        $post=Post::find($id);
+        if($post){
+            return view('posts.edit',compact('post'));
+        }
+        else{
+            $posts=Post::paginate(5);
+            return view('posts.index',compact('posts'));
+        }
     }
 
     /**
@@ -76,7 +84,23 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post=Post::find($id);
+        //dd($post);
+        if($post){
+           $post->update(
+            [
+             "titel"=>$request->titel,
+             "body"=>$request->body
+            ],
+        );
+         $message="update mrigla";
+         $posts=Post::paginate(5);
+         return view('posts.index',['posts'=>$posts,'message'=>$message]);
+        }
+        else{
+            $posts=Post::paginate(5);
+            return view('posts.index',compact('posts'));
+        }
     }
 
     /**
@@ -93,7 +117,7 @@ class PostController extends Controller
               $post->destroy($id);
               //$posts=Post::with('categorie')->get();
               $posts=Post::with('categorie')->get();
-              return view('posts.index',compact('posts'));
+              return view('posts.index',['posts'=>$posts,'message'=>'delete mrigla']);
         }
     }
 
