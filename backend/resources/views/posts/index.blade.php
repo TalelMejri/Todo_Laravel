@@ -12,6 +12,11 @@
      <body>
         @include('../navigation')
         <div class="container-fluid">
+          @if(isset($message))
+            <div class="alert alert-success">
+                 <?=$message?>
+            </div>
+          @endif
             <h1 class="text-center mb-2 text-primary">List Posts</h1>
               <form class="d-flex container mb-5" action="/posts/" method="GET">
                 <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
@@ -36,7 +41,7 @@
                 <td>{{$post->categorie->name}}</td>
                 <td>
                     <button  class="btn btn-primary mb-1"><a class="text-decoration-none text-dark" href="/posts/{{$post->id}}">show</a></button>
-                    <button class="btn btn-warning mb-1">edit</button>
+                    <button class="btn btn-warning mb-1"><a href="/posts/find/{{$post->id}}">edit</a></button>
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{$post->id}}"> delete </button>
   <div class="modal fade" id="exampleModal{{$post->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
