@@ -12,11 +12,14 @@
      <body>
         @include('../navigation')
         <div class="container-fluid">
-
             <h1 class="text-center mb-2 text-primary">List Posts</h1>
-<table class="table border table-striped">
-    <thead>
-        <tr>
+              <form class="d-flex container mb-5" action="/posts/" method="GET">
+                <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+              </form>
+    <table class="table border table-striped">
+       <thead>
+          <tr>
             <th>Id</th>
             <th>Title</th>
             <th>Body</th>

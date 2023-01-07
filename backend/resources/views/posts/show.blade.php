@@ -21,8 +21,8 @@
               </thead>
               <tbody>
                 <tr>
-                    <th> {{$post->id}}</th>
-                   <td>{{$post->titel}}</td>
+                   <th> {{$post->id}}</th>
+                   <td> {{$post->titel}}</td>
                    <td> {{$post->user->email}}</td>
                    <td> {{$post->Categorie->name}}</td>
                 </tr>

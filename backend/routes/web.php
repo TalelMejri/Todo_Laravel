@@ -17,7 +17,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[AppController::class,'welcome']);
 Route::resource('/posts',PostController::class);
-Route::get('/posts/delete/{id}',[PostController::class,'delete']);
+//Route::get('/posts/delete/{id}',[PostController::class,'delete']);
+
 // Route::resource('/posts/index',PostController::class);
 /*Route::get('/', function () {
     return view('welcome');

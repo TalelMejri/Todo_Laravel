@@ -13,10 +13,14 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index()
+    public function index(Request $request)
     {
-       $posts=Post::with('categorie')->get();
-       return view('posts.index',compact('posts'));
+        if(isset($request->search)){
+            $posts=Post::with('categorie')->where('titel','like','%'.$request->search.'%')->paginate(5);
+        }else{
+              $posts=Post::paginate(5);
+        }
+        return view('posts.index',compact('posts'));
     }
 
     /**
@@ -92,6 +96,7 @@ class PostController extends Controller
               return view('posts.index',compact('posts'));
         }
     }
+
 
     public function delete($id)
     {
