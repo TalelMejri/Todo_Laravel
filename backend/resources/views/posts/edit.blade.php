@@ -1,4 +1,5 @@
 @extends("layouts.app")
+
 @section("content")
 <div class="container mt-5 py-3 ">
     <form action="/posts/{{$post->id}}" method="POST" class="shadow-lg p-5 rounded">
