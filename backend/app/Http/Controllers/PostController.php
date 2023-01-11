@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Validator;
+use App\Models\Categorie;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -31,7 +33,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return "new post";
+        $users=User::all();
+        $categories=Categorie::all();
+        return view('posts.create',['users'=>$users,'categories'=>$categories]);
     }
 
     /**
@@ -42,7 +46,26 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /*$request->validate([
+            'titel'=>'required'
+        ]);*/
+        $request->validate(
+         $this->validationRules() );
+       /*
+        premier methode :
+
+        $post=new Post();
+        $post->titel=$request->titel;
+        $post->save();*/
+
+  //2 eme methode
+        $post=Post::create([
+            'titel'=>$request->titel,
+            'body'=>$request->body,
+            'user_id'=>$request->usesid,
+            'categorie_id'=>$request->Categorieid
+        ]);
+
     }
 
     /**
@@ -130,6 +153,16 @@ class PostController extends Controller
             $post->destroy($id);
             return redirect("/posts");
         }
+    }
+
+    private function validationRules(){
+        return
+             [
+            "titel"=>'required|min:5|max:255',
+            'body'=>'required|min:10|max:255',
+            'user_id'=>"required",
+            'categorie_id'=>"required",
+             ];
     }
 
 
