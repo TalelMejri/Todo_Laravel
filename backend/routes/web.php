@@ -31,6 +31,6 @@ Route::middleware('auth')->group(function () {
 
 Route::resource('/posts',PostController::class);
 Route::get('/posts/delete/{id}',[PostController::class,'delete']);
-Route::get('/posts/find/{id}',[PostController::class,'findbyid']);
+Route::get('/posts/find/{id}',[PostController::class,'findbyid'])->name('findpost');
 //Route::get('post/{search}',PostController::class);
 require __DIR__.'/auth.php';

@@ -17,8 +17,9 @@
               <h1 class="text-center mb-2 text-primary">List Posts</h1>
                 <form class="d-flex container mb-5" action="/posts/" method="GET">
                   <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
-                  <button class="btn btn-outline-danger"  type="submit">Search</button>
+                  <button class="btn btn-outline-success"  type="submit">Search</button>
                 </form>
+               <a href="{{url('/posts/create')}}"> <button class="btn btn-primary">create</button></a>
       <table class="table border table-striped">
          <thead>
             <tr>
@@ -30,6 +31,7 @@
           </tr>
       </thead>
       <tbody>
+
           @foreach($posts as $post)
               <tr>
                   <th>{{$post->id}}</th>
@@ -37,12 +39,13 @@
                   <td>{{substr($post->body,2).'...'}}</td>
                   <td>{{$post->categorie->name}}</td>
                   <td>
-                      <button  class="mb-1"><a class="btn btn-danger"  href="/posts/{{$post->id}}">show</a></button>
-                      <button class="  mb-1"><a href="/posts/find/{{$post->id}}">edit</a></button>
-                      <form action="/posts/{{$post->id}}" method="POST">
-                        {{ csrf_field() }}
-                        {{ method_field('DELETE') }}
-                             <button type="submit" > delete </button>
+                    {{-- <button class="btn btn-outline-primary"  class="mb-1 "><a  class="text-decoration-none" href="/posts/{{$post->id}}">show</a></button> --}}
+                      <button class="btn btn-outline-primary"  class="mb-1 "><a  class="text-decoration-none" href="{{route('posts.show',$post->id)}}">show</a></button>
+                      <button class="btn btn-outline-warning"  class="  mb-1  text-decoration-none"><a class="text-decoration-none" href="{{route('findpost',$post->id)}}">edit</a></button>
+                      <form action="{{route('posts.destroy',$post->id)}}" method="POST">
+                       @csrf
+                       @method('DELETE')
+                             <button type="submit" class="btn btn-outline-danger" > delete </button>
                        </form>
                       {{-- <div class="modal fade" id="exampleModal{{$post->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
