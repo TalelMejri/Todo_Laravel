@@ -1,6 +1,12 @@
-@extends("layouts.app")
+{{-- @extends("layouts.app")
 
-@section("content")
+@section("content") --}}
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('posts.edit') }}
+        </h2>
+    </x-slot>
 <div class="container mt-5 py-3 ">
     <form action="/posts/{{$post->id}}" method="POST" class="shadow-lg p-5 rounded">
         {{ csrf_field() }}
@@ -14,4 +20,5 @@
        </div>
     </form>
 </div>
-@endsection
+</x-app-layout>
+{{-- @endsection --}}

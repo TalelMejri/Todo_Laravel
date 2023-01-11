@@ -1,6 +1,13 @@
-@extends("layouts.app")
+{{-- @extends("layouts.app")
 
-@section("content")
+@section("content") --}}
+
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('posts.show') }}
+        </h2>
+    </x-slot>
 <div class="container">
     <h5 class="text-center mb-4 text-danger">Posts id : {{$post->id}}</h5>
     <table class="table table-dark table-striped ">
@@ -22,4 +29,6 @@
           </tbody>
     </table>
 </div>
-@endsection
+</x-app-layout>
+
+{{-- @endsection --}}

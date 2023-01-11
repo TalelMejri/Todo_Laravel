@@ -17,7 +17,7 @@
               <h1 class="text-center mb-2 text-primary">List Posts</h1>
                 <form class="d-flex container mb-5" action="/posts/" method="GET">
                   <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
-                  <button class="btn btn-outline-success" type="submit">Search</button>
+                  <button  type="submit">Search</button>
                 </form>
       <table class="table border table-striped">
          <thead>
@@ -37,10 +37,14 @@
                   <td>{{substr($post->body,50).'...'}}</td>
                   <td>{{$post->categorie->name}}</td>
                   <td>
-                      <button  class="btn btn-primary mb-1"><a class="text-decoration-none text-dark" href="/posts/{{$post->id}}">show</a></button>
-                      <button class="btn btn-warning mb-1"><a href="/posts/find/{{$post->id}}">edit</a></button>
-                      <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{$post->id}}"> delete </button>
-    <div class="modal fade" id="exampleModal{{$post->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <button  class="mb-1"><a  href="/posts/{{$post->id}}">show</a></button>
+                      <button class="  mb-1"><a href="/posts/find/{{$post->id}}">edit</a></button>
+                      <form action="/posts/{{$post->id}}" method="POST">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+                             <button type="submit" > delete </button>
+                       </form>
+                      {{-- <div class="modal fade" id="exampleModal{{$post->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -51,16 +55,16 @@
              delete posts {{$post->titel}}
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="" data-bs-dismiss="modal">Close</button>
             <form action="/posts/{{$post->id}}" method="post">
               {{ csrf_field() }}
               {{ method_field('DELETE') }}
-              <button class="btn btn-danger" >delete</button>
+              <button class="" >delete</button>
           </form>
           </div>
         </div>
       </div>
-    </div>
+    </div> --}}
                       {{-- <button><a href="/posts/delete/{{$post->id}}" >delete</a> </button> --}}
                   </td>
               </tr>
