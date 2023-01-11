@@ -11,9 +11,15 @@ class Post extends Model
 
     protected $fillable=[
         "titel",
-        "body"
+        "body",
+        "categorie_id",
+        "user_id"
     ];
+/*
+     ou bien
 
+    protected $guarded=[];
+*/
     public function user(){
         return $this->belongsTo(User::class);
     }
