@@ -17,7 +17,7 @@
               <h1 class="text-center mb-2 text-primary">List Posts</h1>
                 <form class="d-flex container mb-5" action="/posts/" method="GET">
                   <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
-                  <button  type="submit">Search</button>
+                  <button class="btn btn-outline-danger"  type="submit">Search</button>
                 </form>
       <table class="table border table-striped">
          <thead>
@@ -34,10 +34,10 @@
               <tr>
                   <th>{{$post->id}}</th>
                   <td>{{$post->titel}}</td>
-                  <td>{{substr($post->body,50).'...'}}</td>
+                  <td>{{substr($post->body,2).'...'}}</td>
                   <td>{{$post->categorie->name}}</td>
                   <td>
-                      <button  class="mb-1"><a  href="/posts/{{$post->id}}">show</a></button>
+                      <button  class="mb-1"><a class="btn btn-danger"  href="/posts/{{$post->id}}">show</a></button>
                       <button class="  mb-1"><a href="/posts/find/{{$post->id}}">edit</a></button>
                       <form action="/posts/{{$post->id}}" method="POST">
                         {{ csrf_field() }}
