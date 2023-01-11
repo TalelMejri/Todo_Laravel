@@ -1,12 +1,19 @@
 
-        @extends("layouts.app")
-        @section('content')
+        {{-- @extends("layouts.app")
+        @section('content') --}}
+        <x-app-layout>
+            <x-slot name="header">
+                <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                    {{ __('Posts') }}
+                </h2>
+            </x-slot>
+
         <div class="container-fluid">
-            @if(isset($message))
+            {{-- @if(isset($message))
               <div class="alert alert-success">
-                   <?=$message?>
+                   <?php //$message ?>
               </div>
-            @endif
+            @endif --}}
               <h1 class="text-center mb-2 text-primary">List Posts</h1>
                 <form class="d-flex container mb-5" action="/posts/" method="GET">
                   <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
@@ -61,4 +68,5 @@
       </tbody>
   </table>
   </div>
-        @endsection
+</x-app-layout>
+        {{-- @endsection*/ --}}

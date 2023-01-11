@@ -18,8 +18,9 @@ class PostController extends Controller
         if(isset($request->search)){
             $posts=Post::with('categorie')->where('titel','like','%'.$request->search.'%')->paginate(5);
         }else{
-              $posts=Post::paginate(5);
+            $posts=Post::paginate(5);
         }
+        //dd($posts);
         return view('posts.index',['posts'=>$posts]);
     }
 
