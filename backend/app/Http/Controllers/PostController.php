@@ -6,6 +6,7 @@ use App\Models\Categorie;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -49,8 +50,12 @@ class PostController extends Controller
         /*$request->validate([
             'titel'=>'required'
         ]);*/
+
+
         $request->validate(
-         $this->validationRules() );
+         $this->validationRules()
+        );
+        $image=Storage::disk('public')->put('posts',$request->file('image'));
        /*
         premier methode :
 
@@ -62,10 +67,12 @@ class PostController extends Controller
         $post=Post::create([
             'titel'=>$request->titel,
             'body'=>$request->body,
-            'user_id'=>$request->usesid,
-            'categorie_id'=>$request->Categorieid
+            'user_id'=>$request->user_id,
+            'categorie_id'=>$request->categorie_id,
+            'image'=>$image
         ]);
-
+        $post=Post::find($post->id);
+        return view('posts.show',['post'=>$post]);
     }
 
     /**
@@ -89,9 +96,12 @@ class PostController extends Controller
 
     public function findbyid($id)
     {
+        $users=User::all();
+        $categories=Categorie::all();
+
         $post=Post::find($id);
         if($post){
-            return view('posts.edit',compact('post'));
+            return view('posts.edit',['users'=>$users,'categories'=>$categories,'post'=>$post]);
         }
         else{
             $posts=Post::paginate(5);
@@ -109,17 +119,27 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         $post=Post::find($id);
+
+        $request->validate(
+            $this->validationRules()
+        );
         //dd($post);
+        if($request->hasFile('image')){
+            $image=Storage::disk('public')->put('posts',$request->file('image'));
+            $post->image=$image;
+            $post->save();
+        }
         if($post){
            $post->update(
             [
              "titel"=>$request->titel,
-             "body"=>$request->body
+             "body"=>$request->body,
+             'user_id'=>$request->user_id,
+             'categorie_id'=>$request->categorie_id,
             ],
         );
-         $message="update mrigla";
          $posts=Post::paginate(5);
-         return view('posts.index',['posts'=>$posts,'message'=>$message]);
+         return view('posts.index',['posts'=>$posts,'message'=>"update jawha behyy"]);
         }
         else{
             $posts=Post::paginate(5);
@@ -136,7 +156,7 @@ class PostController extends Controller
 
     public function destroy($id)
     {
-        $post=POST::find($id);
+        $post=Post::find($id);
         if($post){
               $post->destroy($id);
               //$posts=Post::with('categorie')->get();
@@ -158,10 +178,11 @@ class PostController extends Controller
     private function validationRules(){
         return
              [
-            "titel"=>'required|min:5|max:255',
-            'body'=>'required|min:10|max:255',
-            'user_id'=>"required",
-            'categorie_id'=>"required",
+                 "titel"=>'required|min:5|max:255',
+                 'body'=>'required|min:10|max:255',
+                 'user_id'=>"required",
+                 'categorie_id'=>"required",
+                 'image'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
              ];
     }
 
