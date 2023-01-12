@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Postressources;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -15,7 +17,17 @@ class PostController extends Controller
      */
     public function index()
     {
-       return Post::all();
+        $user=Auth::user();
+        if($user){
+            return $user->id;
+        }else{
+            return -5;
+        }
+
+         // return Postressources::collection(Auth::user()->posts);
+        // $posts = Post::get();
+       // dd($posts);
+      // return  Postressources::Collection($posts);
     }
 
     /**
