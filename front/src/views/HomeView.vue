@@ -1,13 +1,16 @@
 <template>
-  <hello-world />
+  <table> 
+    ss
+  </table>
+  
 </template>
 
 <script>
-  import HelloWorld from '../components/HelloWorld'
+  import  "@/store/index";
   export default {
     name: 'Home',
-    components: {
-      HelloWorld,
-    },
+    methods:{
+     
+    }
   }
 </script>
