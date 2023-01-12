@@ -24,4 +24,11 @@ class LoginUser extends Controller
             return response()->json(["message"=>"user not found"],401);
         }
     }
+
+
+    public function logout(){
+       // $user=Auth::user();
+       // $user->tokens()->delete();
+        return response()->json(["message"=>"log out"],200);
+    }
 }
