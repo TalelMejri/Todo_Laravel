@@ -26,6 +26,13 @@
       </div>
 
       <v-spacer></v-spacer>
+      <button @click="log()">log</button>
+      <h1 v-if="logged">
+        welcome Admin
+      </h1>
+      <h1 v-else>
+        Hiiii
+      </h1>
 
       <v-btn
         router to="/login"
@@ -43,12 +50,22 @@
 </template>
 
 <script>
-
+ import "@/store/index";
 export default {
   name: 'App',
 
   data: () => ({
-    //
+    
   }),
+  methods:{
+    log(){
+       return this.$store.dispatch("logout");
+      }
+  },
+  computed:{
+    logged(){
+      return this.$store.getters.token;
+    }
+  }
 };
 </script>
