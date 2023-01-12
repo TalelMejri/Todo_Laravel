@@ -38,7 +38,7 @@
  </template>
 
  <script>
- import "@/plugins/axios"
+ import "@/store/index";
  export default{
     data(){
         return{
@@ -50,8 +50,12 @@
     },
     methods:{
         firelogin(){
-            axios.post('login',this.cardential).then((response)=>{
+          /*  axios.post('login',this.cardential).then((response)=>{
                 console.log(response);
+            })*/
+            this.$store.dispatch("login",this.cardential).then((res)=>{
+               this.$store.getters.role==1 ? this.$router.push("/") :  this.$router.push("/about"); 
+                //console.log("");
             })
         }
     }
